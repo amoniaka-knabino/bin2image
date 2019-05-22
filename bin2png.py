@@ -1,8 +1,8 @@
 from sys import argv
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageSequence
 from math import sqrt
 from itertools import zip_longest
-from images2gif import writeGif
+import imageio
 
 def main():
     input_filename = argv[1]
@@ -20,11 +20,11 @@ def main():
     elif argv[2]=='--gif':
         if len(argv) > 4:
             if argv[3] == '-c':
-                shots_count = argv[4]
+                shots_count = int(argv[4])
                 shot_size = int(image_size / shots_count)
                 if len(argv) == 6:
                     out_filename = argv[5]
-                elif len(argv) == 6:
+                elif len(argv) == 5:
                     out_filename = input_filename+'.gif'
         else:
             if len(argv) == 4:
@@ -34,8 +34,7 @@ def main():
             shots_count = int(image_size/100)
             shot_size = 100
         images = get_image_list(file_bytes_tuples, shot_size)
-        print(images)
-        writeGif(out_filename, images, duration=0.2)
+        imageio.mimsave(out_filename, images, duration = 0.04)
 
 
 def get_bytes(filename):
@@ -66,7 +65,6 @@ def make_image(image_size, s_bytes_tuples):
             current_pic = i*image_size + j
             current_color = s_bytes_tuples[current_pic]
             d.point(xy=[(i, j)], fill=current_color)
-    #pic.save('aa.png', "PNG")
     return pic
 
 
