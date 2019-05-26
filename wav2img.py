@@ -6,13 +6,13 @@ from math import sqrt
 
 #https://audiocoding.ru/article/2008/05/22/wav-file-structure.html
 def main():
-    #input_filename = argv[1]
-    input_filename = 'water_drops.wav'
+    input_filename = argv[1]
+    #input_filename = 'water_drops.wav'
     samples = get_samples(input_filename, 4096)
     colors = list([(i,i,i) for i in samples])
     image = make_square_image(int(sqrt(len(colors))), colors)
     #image = make_line_image(colors)
-    image.save('test_wav2.png', 'PNG')
+    image.save('test_cnock.png', 'PNG')
     
 
 def get_samples(filename, n=None):
