@@ -48,7 +48,7 @@ def get_image_size(bytes_list):
 
 def get_image_list(s_bytes_tuples, shot_size):
     images_bytes_list = list(grouper(s_bytes_tuples, shot_size**2, (0,0,0)))
-    #print(images_bytes_list[0])
+    
     return [make_image(int(shot_size), list(image_bytes)) for image_bytes in images_bytes_list]
 
 
@@ -62,11 +62,9 @@ def make_image(image_size, s_bytes_tuples):
     pic = Image.new('RGB', (image_size, image_size), (255, 255, 255))
     d = ImageDraw.ImageDraw(pic)
     for i in range(0, int(image_size)):
-        for j in range(0, int(image_size)):
-            
+        for j in range(0, int(image_size)):   
             current_pic = i*image_size + j
             current_color = s_bytes_tuples[current_pic]
-            #print(type(s_bytes_tuples[current_pic]))
             d.point(xy=[(i, j)], fill=current_color)
     return pic
 

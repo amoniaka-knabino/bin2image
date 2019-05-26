@@ -1,4 +1,4 @@
-This script converts bin data to square PNG picture.
+This script converts bin data to square PNG picture or gif file.
 
 usage: 
 bin2png.py input_filename --png [output_image_filename]
